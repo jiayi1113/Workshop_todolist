@@ -1,24 +1,35 @@
 // TO DO
-// 1. 點擊任務標記是否完成
-//     - 點擊任務 list 可以切換 `checked` class
-
 document.addEventListener("DOMContentLoaded",function(){
   const list = document.querySelector("ul");
+  const btn = document.querySelector("#addBtn");
+  const text = document.querySelector("#input")
+
+
+  btn.addEventListener("click", () => {
+    if(text.value !== ""){
+      const item = document.createElement("li")
+      item.innerHTML = `${text.value}<span class=\"close\">x</span>`
+      console.log(item);
+      list.appendChild(item)
+      text.value = "";
+    }
+  })  
+
   list.addEventListener("click", (e) => {
     const li = e.target
+    console.log(li)
 
     if(li && li.nodeName === "LI" && li.className === "checked"){
       li.classList.remove("checked");
     }else{
       li.classList.add("checked");
     }
-    
-    // 2. 點擊 x 刪除任務
-    //     - 點擊 `x` 可移除任務
+
     if(li.nodeName === "SPAN"){
       li.parentNode.remove();
-    }
-    
+    }    
   })
+  
+
 });
 
