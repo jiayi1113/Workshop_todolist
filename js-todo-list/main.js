@@ -5,12 +5,20 @@
 document.addEventListener("DOMContentLoaded",function(){
   const list = document.querySelector("ul");
   list.addEventListener("click", (e) => {
-    console.log(e.target)
-    if(e.target && e.target.nodeName === "LI"){
-      e.target.classList.add("checked");
+    const li = e.target
+
+    if(li && li.nodeName === "LI" && li.className === "checked"){
+      li.classList.remove("checked");
     }else{
-      e.target.classList.remove("checked");
+      li.classList.add("checked");
     }
+    
+    // 2. 點擊 x 刪除任務
+    //     - 點擊 `x` 可移除任務
+    if(li.nodeName === "SPAN"){
+      li.parentNode.remove();
+    }
+    
   })
 });
 
